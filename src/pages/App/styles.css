@@ -1,4 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap');
+/* noto-sans-display */
+@import url("https://use.typekit.net/fks2qkq.css");
+/* quicksand */
+@import url("https://use.typekit.net/cvd8ach.css");
+
 html, #root {
   height: 100%;
   margin: 0;
+}
+
+body {
+  width: 100vw;
 }

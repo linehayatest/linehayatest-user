@@ -1,16 +1,14 @@
 import React from "react";
 import { Box, Button, HStack, Text } from "@chakra-ui/react"
 
-import Chat from "@pages/chat/Chat"
 import history from "@globals/history"
-import useStudentStateStore from "@features/chat/stores/userStateStore";
+import useUserStateStore from "@features/user/stores/stateStore";
 
 function useHandleChatRequest() {
-  const setStudentState = useStudentStateStore(state => state.setStudentState)
+  const setUserState = useUserStateStore(state => state.setUserState)
 
   return () => {
-    setStudentState('waiting')
-    history.push("/chat") 
+    history.push("/chat")
   }
 }
 
@@ -31,7 +29,6 @@ function Home() {
         >
           Call
         </Button>
-
         <Button
           w={20}
           onClick={handleChatRequest}

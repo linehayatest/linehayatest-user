@@ -1,10 +1,5 @@
 import create from 'zustand'
-
-type Chat = {
-  message: string,
-  fromSelf: boolean,
-  time: Date,
-}
+import { Chat } from "../models/Chat"
 
 type ChatStore = {
   chats: Chat[],
@@ -17,7 +12,4 @@ const useChatStore = create<ChatStore>(set => ({
 }))
 
 export default useChatStore
-
-export type { 
-  Chat
-}
+export type { ChatStore }
