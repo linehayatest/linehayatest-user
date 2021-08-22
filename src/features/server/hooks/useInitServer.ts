@@ -10,6 +10,7 @@ import useSetupWebSocket from "./useSetupWebSocket"
 import useReconnect from "./useReconnect"
 import useRequestChat from "./useRequestChat"
 import useResetUser from "@features/user/hooks/useResetUser"
+import { useReconnectModalStore } from "../components/ReconnectModal"
 
 
 // useInitServer initializes WebSocket connection based on these conditions:
@@ -33,51 +34,75 @@ function useInitServer() {
   const requestChat = useRequestChat()
   const resetUser = useResetUser()
 
+  const { onModalOpen, setModalContent, modalContent } = useReconnectModalStore(state => ({
+    onModalOpen: state.onOpen,
+    setModalContent: state.setModalContent,
+    modalContent: state.modalContent
+  }))
+
   useEffect(() => {
     // when volunteer close connection: this will react
     // this effect is supposed to run when student logs into the website (e.g)
     // after a refresh
+
+    // User is in chat-active
+    // if user is chatting but socket is closed, ask server if can reconnect
+    // But before attempting Reconnect, ask server if there is another Student with same user id
+    // but already in "Chat-Active" or "Waiting" state
+    // meaning before open this tab, Student already opens another tab with Socket connection open
+
+    // TODO: Also handles the case where user is Waiting and open another tab
+    // If user is in "Waiting" state but socket connection is closed, ask server if there is another
+    // Student in "Waiting" or Chat-Active state, if yes, this is secondary tab
     if (userState === "chatting" && userId !== -1 && readyState === ReadyState.CLOSED || readyState === ReadyState.CLOSING) {
-      axios.get(`${REST_URL}/can_student_reconnect/${userId}`)
+      // ModalContent != volunteer-ended-conversation is used to check if volunteer just ended conversation
+      // if volunteer just ended conversation, then even though we're still chatting but socket is closed
+      // we don't want to reconnect, instead, we want to close the WebSocket connection
+
+      // Question: Is this needed? This is needed because ...
+      if (modalContent !== "volunteer-ended-conversation") {
+        axios.get(`${REST_URL}/can_student_reconnect/${userId}`)
         .then(data => {
           const { canReconnect } = data.data
           setCanReconnect(canReconnect)
-          if (canReconnect) {
-            setupWebSocket()
-          } else {
-            // cannot reconnect (resetted connection)
-            // show a modal: Volunteer has closes connection
-            // question: How to differentiate
-              // Volunteer End Conversation while chatting vs
-              // Student Disconnect then comes back up and Connection already closed
-            // current condition: If user is chatting and but Socket is already closed
-            // setTimeout
-            // if volunteer end conversation, there will be a notification from server
-            // if no notification, then student comes back up
+          setModalContent(canReconnect ? 'last-session-active': 'last-session-ended')
+          if (!canReconnect) {
             resetUser()
           }
         })
+      } else {
+        webSocket?.close()
+        resetUser()
+      }
+      onModalOpen()
     }
+      
   }, [readyState, userState, userId])
 
+  // if server reply that session is still active, reconnect
   useEffect(() => {
     if (canReconnect && readyState === ReadyState.OPEN && sendMessage !== null) {
       reconnect()
     }
   }, [readyState, sendMessage, canReconnect])
 
+  // connect to server and request to chat after student transition to "WAIT" state
   useEffect(() => {
     if (userState === "waiting") {
+      // setup websocket when student request to chat
       if (readyState === ReadyState.CLOSED || readyState === ReadyState.CLOSING) {
+        setModalContent("last-session-ended")
         setupWebSocket()
       }
 
+      // request to chat once connection is open
       if (readyState === ReadyState.OPEN && sendMessage !== null) {
         requestChat()
       }
     }
   }, [readyState, userState, sendMessage])
 
+  // if student is idling, yet connection is still open, closes the connection
   useEffect(() => {
     if (userState === "idling" && readyState === ReadyState.OPEN || readyState === ReadyState.CONNECTING) {
       webSocket?.close()

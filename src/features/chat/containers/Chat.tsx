@@ -66,7 +66,7 @@ function Chat() {
       <VStack h="84%" spacing="2" alignItems="normal" overflowY="auto" pt="1">
         {
           chats.map(chat => (
-            <Box key={chat.time.toISOString()} maxW="80%" alignSelf={chat.fromSelf ? "flex-end" : "flex-start"} bgColor="white" px="3" py="1" rounded="md" boxShadow="sm">
+            <Box key={new Date(chat.time).toISOString()} maxW="80%" alignSelf={chat.fromSelf ? "flex-end" : "flex-start"} bgColor="white" px="3" py="1" rounded="md" boxShadow="sm">
               <Text>
                 {chat.message}
               </Text>
