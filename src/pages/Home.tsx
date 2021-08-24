@@ -3,6 +3,7 @@ import { Box, Button, HStack, Text } from "@chakra-ui/react"
 
 import history from "@globals/history"
 import useUserStateStore from "@features/user/stores/stateStore";
+import useIsChatTabStore from "@features/user/stores/isChatTabStore";
 
 function useHandleChatRequest() {
   const setUserState = useUserStateStore(state => state.setUserState)
@@ -15,6 +16,7 @@ function useHandleChatRequest() {
 function Home() {
 
   const handleChatRequest = useHandleChatRequest()
+  const isChatTab = useIsChatTabStore(state => state.isChatTab)
 
   return (
     <>
@@ -32,6 +34,7 @@ function Home() {
         <Button
           w={20}
           onClick={handleChatRequest}
+          disabled={!isChatTab}
         >
           Chat
         </Button>

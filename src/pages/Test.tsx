@@ -177,7 +177,6 @@ function Test() {
     <VStack
       w={["100vw"]} h="100vh"
       backgroundRepeat="no-repeat"
-      backgroundSize="cover"
       backgroundImage={`url("${waitBackground}")}`}
       alignItems="normal"
       spacing="0"

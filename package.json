@@ -16,7 +16,7 @@
     "url": "https://github.com/Dieman89/vite-reactts-chakra-starter"
   },
   "scripts": {
-    "dev": "vite --port 3002",
+    "dev": "vite --port 3003",
     "build": "tsc && vite build",
     "start": "tsc && yarn dev",
     "test": "concurrently \"yarn start \" \"cypress open\"",

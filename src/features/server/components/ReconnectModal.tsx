@@ -6,6 +6,9 @@ import useResetUser from '@features/user/hooks/useResetUser'
 import useEndConversation from '../hooks/useEndConversation'
 import useSetupWebSocket from '../hooks/useSetupWebSocket'
 import history from '@globals/history'
+import axios from 'axios'
+import { REST_URL } from '@globals/urls'
+import useUserStore from '@features/user/stores/userStore'
 
 type contentType = 'volunteer-ended-conversation' | 'last-session-active' | 'last-session-ended'
 
@@ -34,12 +37,14 @@ function ReconnectModalContent({ modalContent }: ModalContentProps) {
   const resetUser = useResetUser()
   const endConversation = useEndConversation()
   const setupWebSocket = useSetupWebSocket({ onClose: () => {}, onMessage: () => {}})
-
+  const userId = useUserStore(state => state.userId)
 
   const handleEndConversation = () => {
-    endConversation()
+    axios.put(`${REST_URL}/student_end_conversation/${userId}`)
+      .then(data => {})
     setUserState('finish-chatting')
     onClose()
+    history.push("/chat")
   }
 
   const handleReconnect = () => {

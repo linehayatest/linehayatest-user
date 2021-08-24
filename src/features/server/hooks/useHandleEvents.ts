@@ -60,8 +60,8 @@ function useHandleEvents() {
       }
       case EVENTS.PARTY_HAS_END_CONVERSATION: {
         // PROBLEM: websocket closes first before modal content is set
-        setModalContent('volunteer-ended-conversation')
         // reuse the reconnect modal, but show a different type of content
+        setModalContent('volunteer-ended-conversation')
       }
     }
   }, [lastMessage])

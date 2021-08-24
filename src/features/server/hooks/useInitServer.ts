@@ -11,6 +11,7 @@ import useReconnect from "./useReconnect"
 import useRequestChat from "./useRequestChat"
 import useResetUser from "@features/user/hooks/useResetUser"
 import { useReconnectModalStore } from "../components/ReconnectModal"
+import useIsChatTabStore from "@features/user/stores/isChatTabStore"
 
 
 // useInitServer initializes WebSocket connection based on these conditions:
@@ -40,6 +41,11 @@ function useInitServer() {
     modalContent: state.modalContent
   }))
 
+  const { isChatTab, setIsChatTab } = useIsChatTabStore(state => ({
+    isChatTab: state.isChatTab,
+    setIsChatTab: state.setIsChatTab,
+  }))
+
   useEffect(() => {
     // when volunteer close connection: this will react
     // this effect is supposed to run when student logs into the website (e.g)
@@ -59,22 +65,35 @@ function useInitServer() {
       // if volunteer just ended conversation, then even though we're still chatting but socket is closed
       // we don't want to reconnect, instead, we want to close the WebSocket connection
 
-      // Question: Is this needed? This is needed because ...
+      // Question: Is this needed? This is needed because useHandleEvents cannot close WebSocket
+      // That's why socket needs to be closed here. If `useHandleEvents` close WebSocket, 
+
+      // Question 2: Can we resetUser in useHandleEvents? Cannot. Because we need to transition `chat` to `finish-chat`
+      // We cannot transition from `chat` to `idling` to `finish-chat`
       if (modalContent !== "volunteer-ended-conversation") {
-        axios.get(`${REST_URL}/can_student_reconnect/${userId}`)
-        .then(data => {
-          const { canReconnect } = data.data
-          setCanReconnect(canReconnect)
-          setModalContent(canReconnect ? 'last-session-active': 'last-session-ended')
-          if (!canReconnect) {
-            resetUser()
-          }
-        })
+        // if student is active on another tab, we don't want to reconnect
+        axios.get(`${REST_URL}/is_student_active_on_another_tab/${userId}`)
+          .then(data => {
+            const { isActive } = data.data
+            setIsChatTab(!isActive)
+            if (!isActive) {
+              axios.get(`${REST_URL}/can_student_reconnect/${userId}`)
+              .then(data => {
+                const { canReconnect } = data.data
+                setCanReconnect(canReconnect)
+                setModalContent(canReconnect ? 'last-session-active': 'last-session-ended')
+                if (!canReconnect) {
+                  resetUser()
+                }
+              })
+              onModalOpen()
+            }
+          })
       } else {
         webSocket?.close()
         resetUser()
+        onModalOpen()
       }
-      onModalOpen()
     }
       
   }, [readyState, userState, userId])
@@ -89,16 +108,23 @@ function useInitServer() {
   // connect to server and request to chat after student transition to "WAIT" state
   useEffect(() => {
     if (userState === "waiting") {
-      // setup websocket when student request to chat
-      if (readyState === ReadyState.CLOSED || readyState === ReadyState.CLOSING) {
-        setModalContent("last-session-ended")
-        setupWebSocket()
-      }
+      axios.get(`${REST_URL}/is_student_active_on_another_tab/${userId}`)
+        .then(data => {
+          const { isActive } = data.data
+          setIsChatTab(!isActive)
+          if (!isActive) {
+            // setup websocket when student request to chat
+            if (readyState === ReadyState.CLOSED || readyState === ReadyState.CLOSING) {
+              setModalContent("last-session-ended")
+              setupWebSocket()
+            }
 
-      // request to chat once connection is open
-      if (readyState === ReadyState.OPEN && sendMessage !== null) {
-        requestChat()
-      }
+            // request to chat once connection is open
+            if (readyState === ReadyState.OPEN && sendMessage !== null) {
+              requestChat()
+            }
+          }
+        })
     }
   }, [readyState, userState, sendMessage])
 
