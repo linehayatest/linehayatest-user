@@ -4,10 +4,10 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "types": ["vite/client", "cypress", "node"],
     "allowJs": false,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
     "moduleResolution": "Node",
@@ -24,5 +24,8 @@
       "@globals/*": ["globals/*"]
     }
   },
-  "include": ["src", "cypress"]
+  "include": ["src", "cypress"],
+  "exclude": [
+    "./node_modules",
+  ],
 }
