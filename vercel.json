@@ -1,5 +1,5 @@
 {
-  "redirects": [
-    { "source": "/chat", "destination": "/" }
+  "rewrites":  [
+    {"source": "/(.*)", "destination": "/"}
   ]
 }
