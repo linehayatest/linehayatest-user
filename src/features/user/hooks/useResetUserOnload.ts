@@ -17,7 +17,7 @@ function useResetUserOnload() {
     axios.get(`${REST_URL}/is_student_active_on_another_tab/${userId}`)
       .then(data => {
         const { isActive } = data.data
-        if (!isActive && userState === "waiting") {
+        if (!isActive && (userState === "waiting" || userState === "calling")) {
           resetUser()    
         }
       })

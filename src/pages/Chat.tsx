@@ -1,109 +1,94 @@
-import React, { useEffect } from "react";
-import { Box, HStack, Text, Button, Textarea } from "@chakra-ui/react"
+import axios from 'axios'
+import React, { useEffect } from 'react'
+import { Box, Text } from '@chakra-ui/react'
 
-import Chat from "@features/chat/containers/Chat"
-import useUserStateStore from "@features/user/stores/stateStore";
-import { userState } from "@features/user/models/states";
-import Test from "@pages/Test"
-import useIsChatTabStore from "@features/user/stores/isChatTabStore";
-import useUserStore from "@features/user/stores/userStore";
-import { REST_URL } from "@globals/urls";
-import axios from 'axios';
+import NavbarLayoutContainer from '@features/chat/containers/NavbarLayoutContainer'
+import { REST_URL } from '@globals/urls'
+import useUserStateStore from '@features/user/stores/stateStore'
+import useUserStore from '@features/user/stores/userStore'
+import useIsChatTabStore from '@features/user/stores/isChatTabStore'
+import { userState } from '@features/user/models/states'
+import WaitingAreaCard from '@features/chat/components/WaitingAreaCard'
+import useResetUser from '@features/user/hooks/useResetUser'
+import ChatArea from '@features/chat/components/Chat'
+import Feedback from '@features/chat/components/Feedback'
 
-type ChatContentProps = {
-  state: userState
-}
-function ChatContent({ state }: ChatContentProps) {
-  const setUserState = useUserStateStore(state => state.setUserState)
-  const { isChatTab, setIsChatTab } = useIsChatTabStore(state => ({
-    isChatTab: state.isChatTab,
-    setIsChatTab: state.setIsChatTab,
-  }))
+/*
+if not chat tab, display "this is not chat tab"
+if chatting: display Chat
+if FinishChatting: Display form
+otherwise, display waiting area cards
+*/
+
+function useVerifyChatTab() {
   const userId = useUserStore(state => state.userId)
+  const setIsChatTab = useIsChatTabStore(state => state.setIsChatTab)
 
-  const onFeedbackFormSubmit = () => {
-    setUserState("idling")  
-  }
-
-  // update isChatTab
   useEffect(() => {
     axios.get(`${REST_URL}/is_student_active_on_another_tab/${userId}`)
     .then(data => {
       const { isActive } = data.data
       setIsChatTab(!isActive)
-    })      
-  }, []);
+    })
+  }, [])
+}
 
-  switch (state) {
-    case 'idling': {
-      return (
-        <Test />
-      )
+function useResetFinishAndWaitingState() {
+  const userState = useUserStateStore(state => state.userState)
+  const resetUser = useResetUser()
+
+  useEffect(() => {
+    if (userState === 'waiting' || userState === 'finish-chatting') {
+      resetUser()
     }
-    // TODO: change this to be the same as Test last page
-    case 'waiting': {
-      return isChatTab ? (
-        <HStack px="8" h="full" justifyContent="center" alignItems="center">
-          <Text textAlign="center">
-            Please wait awhile before our team pick up your request
-          </Text>
-        </HStack>
-      ) : (
-        <Text>You have another tab open that is making chat request. Please cancel that request before making one in this tab.</Text>
-      )
-    }
+  }, [])
+}
+
+function Content() {
+  const { userState, setUserState } = useUserStateStore(state => ({
+    userState: state.userState,
+    setUserState: state.setUserState,
+  }))
+
+  switch(userState) {
     case 'chatting': {
-      return isChatTab ? (
-        <Chat />
-      ) : (
-        <Text>You have another tab open that is chatting.</Text>
+      return (
+        <ChatArea />
       )
-    }
+    };
     case 'finish-chatting': {
       return (
-        <Box textAlign="center">
-          <Box mt="12">
-            <Text mb="4">Feedback form</Text>
-            <Text>Please rate this chat session.</Text>
-          </Box>
-          <Box mt="4">
-            <span className="star-rating">
-              <input type="radio" name="rating" value="1" /><i></i>
-              <input type="radio" name="rating" value="2" /><i></i>
-              <input type="radio" name="rating" value="3" /><i></i>
-              <input type="radio" name="rating" value="4" /><i></i>
-              <input type="radio" name="rating" value="5" /><i></i>
-            </span>
-          </Box>
-          <Box mt="8" px="4">
-            <Text>Additional Comments</Text>
-            <Textarea 
-              mx="auto"
-              mt="4"
-              placeholder="I think this could be improved..."
-              variant="filled"
-              rows={10}
-            />
-          </Box>
-          <Button
-            mt="4"
-            colorScheme="whatsapp"
-            onClick={onFeedbackFormSubmit}
-          >
-            Submit
-          </Button>
-        </Box>
+        <Feedback />
+      )
+    };
+    default: {
+      return (
+        <WaitingAreaCard onLastCard={() => {
+            setUserState('waiting')
+          }}
+        />
       )
     }
   }
 }
 
-export default function ChatPage() {
-  const studentState = useUserStateStore(state => state.userState)
+function Chat() {
+  const isChatTab = useIsChatTabStore(state => state.isChatTab)
+
+  useVerifyChatTab()
+  useResetFinishAndWaitingState()
 
   return (
-    <Box h="100vh">
-      <ChatContent state={studentState} />
-    </Box>
+    isChatTab ? (
+      <NavbarLayoutContainer>
+        <Content />
+      </NavbarLayoutContainer>
+    ) : (
+      <Box>
+        <Text>You have another tab making chat request open. Please close the tab first.</Text>
+      </Box>
+    )
   )
 }
+
+export default Chat

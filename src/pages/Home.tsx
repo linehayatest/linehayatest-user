@@ -1,22 +1,26 @@
 import React from "react";
 import { Box, Button, HStack, Text } from "@chakra-ui/react"
+import Peer from "peerjs";
 
 import history from "@globals/history"
-import useUserStateStore from "@features/user/stores/stateStore";
 import useIsChatTabStore from "@features/user/stores/isChatTabStore";
 
 function useHandleChatRequest() {
-  const setUserState = useUserStateStore(state => state.setUserState)
-
   return () => {
     history.push("/chat")
   }
 }
 
+function useHandleCallRequest() {
+  return () => history.push('/call')
+}
+
 function Home() {
 
   const handleChatRequest = useHandleChatRequest()
+  const handleCallRequest = useHandleCallRequest()
   const isChatTab = useIsChatTabStore(state => state.isChatTab)
+
 
   return (
     <>
@@ -27,7 +31,9 @@ function Home() {
       <HStack justifyContent="center" spacing="8" mb="8">
         <Button
           w={20}
-          onClick={() => console.log('calling')}
+          onClick={() => {
+            handleCallRequest()
+          }}
         >
           Call
         </Button>

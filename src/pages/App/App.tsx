@@ -7,7 +7,8 @@ import {
 import { Text, Textarea, ChakraProvider, extendTheme, useDisclosure } from "@chakra-ui/react";
 
 import Home from "@pages/Home"
-import ChatPage from "@pages/Chat2";
+import ChatPage from "@pages/Chat";
+import CallPage from "@pages/Call";
 import useHandleEvents from "@features/server/hooks/useHandleEvents";
 import history from "@globals/history"
 import useInitServer from "@features/server/hooks/useInitServer";
@@ -20,7 +21,7 @@ import "@fontsource/noto-sans"
 import "@pages/App/styles.css"
 import ReconnectModal from "@features/server/components/ReconnectModal";
 import useResetUserOnload from "@features/user/hooks/useResetUserOnload";
-
+import CallScreen from "@features/call/components/CallScreen"
 
 export default function App() {
   useHandleEvents()
@@ -36,13 +37,13 @@ export default function App() {
         <Route path="/chat">
           <ChatPage />
         </Route>
-        <Route path="/test">
-          <FinishChatting />
+        <Route path="/call">
+          <CallPage />
         </Route>
         <Route path="/">
           <Home />
         </Route>
-      </Switch>
+        </Switch>
     </Router>
   );
 }

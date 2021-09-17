@@ -47,9 +47,17 @@ type EndConversationRequest = {
   }
 }
 
+type CallRequest = {
+  type: 8,
+  payload: {
+    peerId: string
+  }
+}
+
 export type { 
   RequestCode,
   ChatRequest,
+  CallRequest,
   ChatMessage,
   ReconnectRequest,
   EndConversationRequest
