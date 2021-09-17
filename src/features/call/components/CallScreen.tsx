@@ -13,8 +13,8 @@ type ContentProps = {
 function CallScreen({ remoteAudio, localAudio }: ContentProps) {
   const [forceRerender, setForceRerender] = useState(false)
 
-  const mutedLocal = localAudio.current?.paused
-  const mutedRemote = remoteAudio.current?.paused
+  const mutedLocal = localAudio.current?.muted
+  const mutedRemote = remoteAudio.current?.muted
 
   const MicrophoneButton = useCallback(({ muted }: { muted: boolean }) => {
     return (
@@ -90,10 +90,8 @@ function CallScreen({ remoteAudio, localAudio }: ContentProps) {
             {bgColor:"#AFCDD0", color: "#5A4C43"}
           }
           onClick={() => {
-            if(muted) {
-              remoteAudio.current?.play()
-            } else {
-              remoteAudio.current?.pause()
+            if (remoteAudio.current) {
+              remoteAudio.current.muted = !remoteAudio.current.muted
             }
             setForceRerender(!forceRerender)
           }}
