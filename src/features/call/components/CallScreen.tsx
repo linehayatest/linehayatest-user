@@ -3,7 +3,6 @@ import { Text, Button, HStack, Box, VStack, Image, IconButton, Tooltip } from '@
 import { PhoneIcon } from "@chakra-ui/icons";
 import { FaMicrophone } from 'react-icons/all'
 
-import NavbarLayoutContainer from "@features/call/containers/NavbarLayoutContainer";
 import logo from '@resources/images/LineHayat-WhiteBackground.svg'
 
 type ContentProps = {

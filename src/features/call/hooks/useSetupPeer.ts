@@ -26,7 +26,7 @@ function useSetupPeer() {
   const toast = useToast()
 
   return ({ peer, localAudio, remoteAudio }: setupPeerProps) => {
-    navigator.mediaDevices.getUserMedia({ video: false, audio: true })
+    navigator.mediaDevices.getUserMedia({ video: false, audio: { echoCancellation: true }})
       .then(stream => {
         setStream(stream)
         localAudio.current.srcObject = stream
