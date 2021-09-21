@@ -4,6 +4,7 @@ import { PhoneIcon } from "@chakra-ui/icons";
 import { FaMicrophone } from 'react-icons/all'
 
 import logo from '@resources/images/LineHayat-WhiteBackground.svg'
+import useStreamStore from '../stores/streamStore';
 
 type ContentProps = {
   remoteAudio: MutableRefObject<HTMLAudioElement>,
@@ -11,8 +12,9 @@ type ContentProps = {
 }
 function CallScreen({ remoteAudio, localAudio }: ContentProps) {
   const [forceRerender, setForceRerender] = useState(false)
+  const localStream = useStreamStore(state => state.stream)
 
-  const mutedLocal = localAudio.current?.muted
+  const mutedLocal = localStream.getAudioTracks()[0].enabled
   const mutedRemote = remoteAudio.current?.muted
 
   const MicrophoneButton = useCallback(({ muted }: { muted: boolean }) => {
@@ -45,19 +47,21 @@ function CallScreen({ remoteAudio, localAudio }: ContentProps) {
             {bgColor:"#AFCDD0", color: "#5A4C43"}
           }
           onClick={() => {
-            /*
             if(muted) {
-              localAudio.current?.play()
+              localStream.getAudioTracks().forEach(
+                stream => stream.enabled = true
+              )
             } else {
-              localAudio.current?.pause()
+              localStream.getAudioTracks().forEach(
+                stream => stream.enabled = false
+              )
             }
-            */
             setForceRerender(!forceRerender)
           }}
         />
       </Tooltip>
     )
-  }, [remoteAudio, localAudio, forceRerender])
+  }, [remoteAudio, localAudio, localStream, forceRerender])
 
   const PhoneButton = useCallback(({ muted }: { muted: boolean }) => {
     return (
