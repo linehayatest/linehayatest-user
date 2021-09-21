@@ -3,13 +3,15 @@ import { Tooltip, Box, Text, IconButton } from '@chakra-ui/react'
 import { PhoneIcon } from "@chakra-ui/icons";
 
 function useMuteAudio(audio: MutableRefObject<HTMLAudioElement>) {
-  const [muted, setMuted] = useState(audio.current.muted)
+  const [muted, setMuted] = useState(audio.current ? audio.current.muted : false)
 
   return {
     muted,
     toggleMute: () => {
       setMuted(!muted)
-      audio.current.muted = !audio.current.muted
+      if (audio.current) {
+        audio.current.muted = !audio.current.muted
+      }
     },
   }
 }
