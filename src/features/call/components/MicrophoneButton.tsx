@@ -5,7 +5,7 @@ import { FaMicrophone } from 'react-icons/all'
 import useStreamStore from '../stores/streamStore'
 
 function useMuteLocalAudio(stream: MediaStream) {
-  const [muted, setMuted] = useState(stream.getAudioTracks()[0].enabled)
+  const [muted, setMuted] = useState(!stream.getAudioTracks()[0].enabled)
 
   return {
     muted,
