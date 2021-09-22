@@ -21,7 +21,7 @@ function MobileMenuLink({ text, href, active=false }: MobileMenuLinkProps) {
       textAlign="center" rounded="md"
       fontWeight="semibold"
       color={active ? "green.600" : "gray.800"}
-      bgColor={active ? "green.100": "white"}
+      bgColor={active ? "green.100": "#EDF2F7"}
     >
       <Link
         to={href}
@@ -36,16 +36,21 @@ function MobileMenu() {
   const isLinkActive = useIsLinkActive()
 
   return (
-    <Box w="full" h="full" bgColor="white">
+    <Box w="full" h="full" bgColor="#EDF2F7">
       <MobileMenuLink
-        active={isLinkActive("/volunteer")}
-        text="Dashboard"
+        active={isLinkActive("/")}
+        text="Home"
         href="/volunteer"
       />
       <MobileMenuLink
-        active={isLinkActive("/volunteer/chat")}
+        active={isLinkActive("/call")}
+        text="Call"
+        href="/call"
+      />
+      <MobileMenuLink
+        active={isLinkActive("/chat")}
         text="Chat"
-        href="/volunteer/chat"
+        href="/chat"
       />
     </Box>
   )
