@@ -1,13 +1,8 @@
-type EnvType = 'local' | 'production'
-
-const LOCAL: EnvType = 'local'
-const PRODUCTION: EnvType = 'production'
-
 // change this line to switch between local and production development
-const ENVIRONMENT: EnvType = PRODUCTION
+let ENVIRONMENT = 'production'
 
 // change this line too
-const URLS = ENVIRONMENT === PRODUCTION ? (
+const URLS = ENVIRONMENT === 'local' ? (
   {
     BASE: "http://localhost:3003",
     SOCKET: "ws://localhost:8050/ws",
