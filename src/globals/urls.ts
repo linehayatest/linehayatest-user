@@ -1,12 +1,29 @@
-// const BASE_URL = "http://localhost:3001"
-// const BASE_URL = "https://linehayat-website-2.vercel.app"
-const BASE_URL = "https://linehayat.vercel.app"
+type EnvType = 'local' | 'production'
 
-const SOCKET_URL = "wss://linehayat-server-1.herokuapp.com/ws"
-// const SOCKET_URL = `ws://localhost:8050/ws`
+const LOCAL: EnvType = 'local'
+const PRODUCTION: EnvType = 'production'
 
-const REST_URL = `https://linehayat-server-1.herokuapp.com`
-// const REST_URL = `http://localhost:8050`
+// change this line to switch between local and production development
+const ENVIRONMENT: EnvType = PRODUCTION
+
+// change this line too
+const URLS = ENVIRONMENT === PRODUCTION ? (
+  {
+    BASE: "http://localhost:3003",
+    SOCKET: "ws://localhost:8050/ws",
+    REST: "http://localhost:8050",
+  }
+) : (
+  {
+    BASE: "https://linehayat.vercel.app",
+    SOCKET: "wss://linehayat-server-1.herokuapp.com/ws",
+    REST: "https://linehayat-server-1.herokuapp.com",
+  }
+)
+
+const BASE_URL = URLS.BASE
+const SOCKET_URL = URLS.SOCKET
+const REST_URL = URLS.REST
 
 export {
   BASE_URL,
