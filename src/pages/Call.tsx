@@ -44,12 +44,12 @@ function Call() {
   const userState = useUserStateStore(state => state.userState)
   const remoteAudio = useRef<null|HTMLAudioElement>(null)
   const localAudio = useRef<null|HTMLAudioElement>(null)
-  const peer = new Peer(); 
 
   const setupPeer = useSetupPeer()
 
   useEffect(() => {
     if (userState === 'waiting-call') {
+      const peer = new Peer()
       setupPeer({ peer, localAudio, remoteAudio })
     }
   }, [userState])
