@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, HStack, Text } from "@chakra-ui/react"
+import { Box, Button, HStack, Text, Tooltip } from "@chakra-ui/react"
 import Peer from "peerjs";
 
 import history from "@globals/history"
@@ -29,14 +29,17 @@ function Home() {
       </Box>
 
       <HStack justifyContent="center" spacing="8" mb="8">
-        <Button
-          w={20}
-          onClick={() => {
-            handleCallRequest()
-          }}
-        >
-          Call
-        </Button>
+        <Tooltip hasArrow label="Calling is not available yet" shouldWrapChildren>
+          <Button
+            isDisabled
+            w={20}
+            onClick={() => {
+              handleCallRequest()
+            }}
+          >
+            Call
+          </Button>
+        </Tooltip>
         <Button
           w={20}
           onClick={handleChatRequest}
