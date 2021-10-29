@@ -1,5 +1,5 @@
 // change this line to switch between local and production development
-const ENVIRONMENT = 'production'
+let ENVIRONMENT = 'production'
 
 const URLS = ENVIRONMENT === 'local' ? (
   {
