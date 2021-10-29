@@ -1,26 +1,13 @@
 import React from "react";
-import { Box, Button, HStack, Text, Tooltip } from "@chakra-ui/react"
-import Peer from "peerjs";
+import { Link } from "react-router-dom";
+import { Box, Button, HStack, Text, Tooltip } from "@chakra-ui/react";
 
 import history from "@globals/history"
 import useIsChatTabStore from "@features/user/stores/isChatTabStore";
 
-function useHandleChatRequest() {
-  return () => {
-    history.push("/chat")
-  }
-}
-
-function useHandleCallRequest() {
-  return () => history.push('/call')
-}
 
 function Home() {
-
-  const handleChatRequest = useHandleChatRequest()
-  const handleCallRequest = useHandleCallRequest()
   const isChatTab = useIsChatTabStore(state => state.isChatTab)
-
 
   return (
     <>
@@ -33,24 +20,17 @@ function Home() {
           <Button
             isDisabled
             w={20}
-            onClick={() => {
-              handleCallRequest()
-            }}
+            onClick={() => history.push('/call')}
           >
             Call
           </Button>
         </Tooltip>
-        <Button
-          w={20}
-          onClick={handleChatRequest}
-          disabled={!isChatTab}
-        >
-          Chat
-        </Button>
-      </HStack>      
+
+        <Link to='/chat'
+        ><Button disabled={!isChatTab} w={20}>Chat</Button></Link>
+      </HStack>
     </>
-    
-  )
+  );
 }
 
-export default Home
+export default Home;

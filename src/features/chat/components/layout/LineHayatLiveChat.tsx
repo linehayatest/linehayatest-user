@@ -7,10 +7,7 @@ function LineHayatLiveChat() {
   return (
     <HStack w={["90%", "70%"]}>
       <Image src={chatBubbles} w="14" mr="4" />
-      <Text
-        fontWeight="900" fontFamily="quicksand" fontSize="34"
-        color="#5B4C43"
-      >
+      <Text fontFamily="Berkshire Swash" fontWeight="400"  fontSize="1.25em" color="#5B4C43">
         LineHayat Live Chat
       </Text>
     </HStack>

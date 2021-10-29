@@ -28,15 +28,15 @@ function useContent() {
   const cards = [
     // Card 1
     (
-      <VStack h="full" w="full" px="2" justifyContent="center" fontSize="24px" fontFamily="quicksand" fontWeight="800">
+      <VStack h="full" w="full" px="2" justifyContent="center" fontSize="24px" fontFamily="Print Clearly" fontWeight="600">
         <Text textAlign="center" mb="4">Hi, how are you today?</Text>
         <Text textAlign="center">Would you like to talk to someone?</Text>
       </VStack>
     ),
     // Card 2
     (
-      <VStack h="full" w="full" px="2" justifyContent="center" fontSize="24px" fontFamily="quicksand" fontWeight="800" textAlign="center">
-        <Text mb="4" mt="2" fontSize={["20px", "28px"]}>How LineHayat's anonymous chat support service works?</Text>
+      <VStack h="full" w="full" px="2" justifyContent="center" fontSize="24px" fontFamily="Print Clearly" fontWeight="600" textAlign="center">
+        <Text mb="4" mt="2" fontFamily="Berkshire Swash" fontWeight="400" fontSize="20px">How LineHayat's anonymous chat support service works?</Text>
         <HStack
           display={["none", "flex"]}
           justifyContent="center"
@@ -71,8 +71,8 @@ function useContent() {
     ),
     // Card 3
     (
-      <VStack h="full" w="full" px="2" pt="4" justifyContent="center" fontSize="24px" fontFamily="quicksand" fontWeight="800" textAlign="center" overflow="auto">
-        <Text>Terms of Use</Text>
+      <VStack h="full" w="full" px="2" pt="4" justifyContent="center" fontSize="24px" fontFamily="Print Clearly" fontWeight="600" textAlign="center" overflow="auto">
+        <Text fontFamily="Berkshire Swash" fontWeight="400">Terms of Use</Text>
         <Box textAlign="left" px="8">
           <Text fontSize="18px" mb="4">
             By using LifeHayat Support Services, you have agreed to the Terms and Conditions stated below. LineHayat support service is delivered by a team of well-trained Listening Volunteers and is provided for university students only.
@@ -111,7 +111,7 @@ function useContent() {
         justifyContent="center"
         h="full" w="full"
         px="2"
-        fontSize="24px" fontFamily="quicksand" fontWeight="800" textAlign="center"
+        fontSize="24px" fontFamily="Print Clearly" fontWeight="600" textAlign="center"
         overflow="auto"
       >
         <Box h="140px" overflowY="hidden" marginTop={["0", "-48px"]}>
@@ -122,18 +122,18 @@ function useContent() {
             objectFit="scale-down"
           />
         </Box>
-        <Text fontSize="28px">Waiting Room</Text>
+        <Text fontFamily="Berkshire Swash" fontWeight="400" fontSize="28px">Waiting Room</Text>
 
         <VStack fontSize="18px" w="100%" px="4" justifyContent="center">
           <Text>Hi Friend, I am your listener today.</Text>
-          <Text mb="2">You are now in the queue. I will reach you soon.</Text>
+          <Text>You are now in the queue. I will reach you soon.</Text>
 
-          <Text mb="2">Thank you for your patience.</Text>
+          <Text>Thank you for your patience.</Text>
 
-          <Text mb="2">While waiting to get in, there are few things that I would like to tell you:</Text>
+          <Text>While waiting to get in, there are few things that I would like to tell you:</Text>
           <UnorderedList w={["auto", "480px"]} textAlign="left">
             <ListItem>Feel free to share your feelings and thoughts.</ListItem>
-            <ListItem>Talk at your own pace and willingness</ListItem>
+            <ListItem>Talk at your own pace and willingness.</ListItem>
           </UnorderedList>
 
           <Text mb="8">I appreciate you being here.</Text>

@@ -1,7 +1,6 @@
 // change this line to switch between local and production development
-let ENVIRONMENT = 'production'
+const ENVIRONMENT = 'production'
 
-// change this line too
 const URLS = ENVIRONMENT === 'local' ? (
   {
     BASE: "http://localhost:3003",
@@ -10,9 +9,9 @@ const URLS = ENVIRONMENT === 'local' ? (
   }
 ) : (
   {
-    BASE: "https://linehayat.vercel.app",
-    SOCKET: "wss://linehayat-server-1.herokuapp.com/ws",
-    REST: "https://linehayat-server-1.herokuapp.com",
+    BASE: "https://linehayat.netlify.app",
+    SOCKET: "wss://linehayatest.herokuapp.com/ws",
+    REST: "https://linehayatest.herokuapp.com",
   }
 )
 

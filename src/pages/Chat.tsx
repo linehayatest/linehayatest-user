@@ -7,7 +7,6 @@ import { REST_URL } from '@globals/urls'
 import useUserStateStore from '@features/user/stores/stateStore'
 import useUserStore from '@features/user/stores/userStore'
 import useIsChatTabStore from '@features/user/stores/isChatTabStore'
-import { userState } from '@features/user/models/states'
 import WaitingAreaCard from '@features/chat/components/WaitingAreaCard'
 import useResetUser from '@features/user/hooks/useResetUser'
 import ChatArea from '@features/chat/components/Chat'
@@ -20,18 +19,18 @@ if FinishChatting: Display form
 otherwise, display waiting area cards
 */
 
-function useVerifyChatTab() {
-  const userId = useUserStore(state => state.userId)
-  const setIsChatTab = useIsChatTabStore(state => state.setIsChatTab)
+// function useVerifyChatTab() {
+//   const userId = useUserStore(state => state.userId)
+//   const setIsChatTab = useIsChatTabStore(state => state.setIsChatTab)
 
-  useEffect(() => {
-    axios.get(`${REST_URL}/is_student_active_on_another_tab/${userId}`)
-    .then(data => {
-      const { isActive } = data.data
-      setIsChatTab(!isActive)
-    })
-  }, [])
-}
+//   useEffect(() => {
+//     axios.get(`${REST_URL}/is_student_active_on_another_tab/${userId}`)
+//     .then(data => {
+//       const { isActive } = data.data
+//       setIsChatTab(!isActive)
+//     })
+//   }, [])
+// }
 
 function useResetFinishAndWaitingState() {
   const userState = useUserStateStore(state => state.userState)
@@ -52,22 +51,13 @@ function Content() {
 
   switch(userState) {
     case 'chatting': {
-      return (
-        <ChatArea />
-      )
+      return <ChatArea />
     };
     case 'finish-chatting': {
-      return (
-        <Feedback />
-      )
+      return <Feedback />
     };
     default: {
-      return (
-        <WaitingAreaCard onLastCard={() => {
-            setUserState('waiting')
-          }}
-        />
-      )
+      return <WaitingAreaCard onLastCard={() => setUserState('waiting')} />
     }
   }
 }
@@ -75,7 +65,7 @@ function Content() {
 function Chat() {
   const isChatTab = useIsChatTabStore(state => state.isChatTab)
 
-  useVerifyChatTab()
+  // useVerifyChatTab()
   useResetFinishAndWaitingState()
 
   return (

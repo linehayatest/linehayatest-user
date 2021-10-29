@@ -17,13 +17,14 @@ function Feedback() {
         h={["90%"]} w={["100%", "70%"]}
         px={["4", "100px"]}
         bgColor="#CFDED7"
-        fontFamily="quicksand"
-        fontWeight="500"
+        fontFamily="Print Clearly"
+        fontSize="1.5em"
+        fontWeight="600"
         rounded="2xl" boxShadow="md"
         justifyContent="center" alignItems="center"
       >
-        <Text>Feedback for LineHayat Live Chat</Text>
-        <Text fontWeight="600">Kindly rate this chat session</Text>
+        <Text fontFamily="Berkshire Swash" fontSize="1.25em">Feedback for LineHayat Live Chat</Text>
+        <Text>Kindly rate this chat session</Text>
 
         <Rating
           emptySymbol={<Image src={emptyStar} />}

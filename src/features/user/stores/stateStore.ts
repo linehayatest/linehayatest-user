@@ -5,18 +5,18 @@ import { userState } from "../models/states"
 
 type UserStateStore = {
   userState: userState,
-  setUserState: (s: userState) => void
+  setUserState: (state: userState) => void
 }
 
 const useUserStateStore = create<UserStateStore>(persist(
   (set, get) => ({
     userState: 'idling',
-    setUserState: (s) => set(_state => ({ userState: s }))
+    setUserState: state => set({ userState: state }),
   }),
   {
-    name: 'user-state'
-  })
-)
+    name: 'user-state',
+  }
+))
 
 export type { UserStateStore }
 

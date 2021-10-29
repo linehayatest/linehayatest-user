@@ -45,15 +45,19 @@ function ChatBubble({ chat, keyStr }: ChatBubbleProps) {
         inViewport ? (
           <>
             <Text
-              fontWeight="500"
+              fontWeight="600"
               textAlign={chat.fromSelf ? "right" : "left"}
-              fontSize="xs">{time.getHours() % 12}:{time.getMinutes() < 10 ? `0${time.getMinutes()}` : time.getMinutes()}</Text>
+              fontFamily="Print Clearly"
+              fontSize="1em">{time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Text>
             <Box
               key={keyStr}
               rounded="md"
               w="100%"
               backgroundColor={chat.fromSelf ? "#E5EAEE" : "white"}
               px="16px" py="8px"
+              fontWeight="600"
+              fontSize="1.25em"
+              fontFamily="Print Clearly"
             >
               {
                 inViewport ? (
@@ -159,12 +163,11 @@ function ChatArea() {
   }, [text, inputRef, sendChat])
 
   return (
-          
     <Box w="100%" h={["500px", "550px"]} bgColor="#CFDED7" rounded="xl" boxShadow="xl">
       <HStack justifyContent="space-between" px="4" py="2" borderBottom="2px solid white">
         <HStack>
           <Box w="20px" h="20px" bgColor="#49CA85" borderRadius="50%"></Box>
-          <Text fontSize={["18px"]}>Listening Volunteer</Text>
+          <Text fontSize="1.5em" fontFamily="Print Clearly" fontWeight="600">Listening Volunteer</Text>
         </HStack>
         <EndConversationButton />
       </HStack>
@@ -190,8 +193,11 @@ function ChatArea() {
           borderTopRightRadius="0"
           bgColor="#E5EAEE"
           ref={inputRef}
-          value={text} 
+          value={text}
           onChange={(e) => setText(e.target.value)}
+          fontFamily="Print Clearly"
+          fontSize="1.25em"
+          fontWeight="600"
           placeholder="Type your messages here..."
         />
         <IconButton
