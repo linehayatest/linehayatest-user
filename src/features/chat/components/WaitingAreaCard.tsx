@@ -36,7 +36,7 @@ function useContent() {
     // Card 2
     (
       <VStack h="full" w="full" px="2" justifyContent="center" fontSize="24px" fontFamily="Print Clearly" fontWeight="600" textAlign="center">
-        <Text mb="4" mt="2" fontFamily="Berkshire Swash" fontWeight="400" fontSize="20px">How LineHayat's anonymous chat support service works?</Text>
+        <Text mb="4" mt="2" fontFamily="Berkshire Swash" fontWeight="400" fontSize="20px">How does LineHayat's anonymous chat support service work?</Text>
         <HStack
           display={["none", "flex"]}
           justifyContent="center"
@@ -75,15 +75,14 @@ function useContent() {
         <Text fontFamily="Berkshire Swash" fontWeight="400">Terms of Use</Text>
         <Box textAlign="left" px="8">
           <Text fontSize="18px" mb="4">
-            By using LifeHayat Support Services, you have agreed to the Terms and Conditions stated below. LineHayat support service is delivered by a team of well-trained Listening Volunteers and is provided for university students only.
+            By using LineHayat Support Services, you agree to the Terms and Conditions stated below. LineHayat is a Listening Service delivered by a team of well-trained Listening Volunteers and is provided for USM students only.
           </Text>
           <OrderedList fontSize="16px" mb="8">
-            <ListItem>We provide immediate and accessible emotional support to university students.</ListItem>
+            <ListItem>We provide immediate and accessible emotional support to USM students.</ListItem>
             <ListItem>We listen with an empathic, collaborative, and non-judgemental stance.</ListItem>
             <ListItem>We provide a safe space for you to talk or share feelings and thoughts.</ListItem>
             <ListItem>We do not provide professional counselling, medical advice, or treatment of any conditions.</ListItem>
             <ListItem>We will not be treated as an emergency service or subsitute or alternative to professional health care.</ListItem>
-            <ListItem>We will not ask for identifying information (such as your name or address) unless follow-up is required. A follow-up call will only be given on your request and agreement.</ListItem>
             <ListItem>We have taken three significant steps to ensure a high level of security:</ListItem>
             <OrderedList fontSize="16px" listStyleType="upper-roman">
               <ListItem>Both you and the Listening Volunteer will remain anonymous.</ListItem>
@@ -126,7 +125,7 @@ function useContent() {
 
         <VStack fontSize="18px" w="100%" px="4" justifyContent="center">
           <Text>Hi Friend, I am your listener today.</Text>
-          <Text>You are now in the queue. I will reach you soon.</Text>
+          <Text>You are now in the queue. I will reach out to you soon.</Text>
 
           <Text>Thank you for your patience.</Text>
 
@@ -134,6 +133,7 @@ function useContent() {
           <UnorderedList w={["auto", "480px"]} textAlign="left">
             <ListItem>Feel free to share your feelings and thoughts.</ListItem>
             <ListItem>Talk at your own pace and willingness.</ListItem>
+            <ListItem>It’s okay to stay silent if you want to gather your thoughts.</ListItem>
           </UnorderedList>
 
           <Text mb="8">I appreciate you being here.</Text>
@@ -141,7 +141,7 @@ function useContent() {
           <Text
             fontSize="18px"
           >
-            If it is not very convenient for you to wait, please click here for a list of other resources.
+            If waiting is not an option for you, clicking here will redirect you to a list of other helplines.
           </Text>
         </VStack>
       </VStack>
