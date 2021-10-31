@@ -1,13 +1,23 @@
-/* Print Clearly */
-@import url("http://fonts.cdnfonts.com/css/print");
-/* Berkshire Swash */
-@import url('http://fonts.cdnfonts.com/css/berkshire-swash');
 /* Quicksand */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap');
 /* noto-sans-display */
 @import url("https://use.typekit.net/fks2qkq.css");
 /* quicksand */
 @import url("https://use.typekit.net/cvd8ach.css");
+
+@font-face {
+  font-family: 'Print Clearly';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Print Clearly'), url('../../resources/fonts/PrintClearly.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Berkshire Swash';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Berkshire Swash'), url('../../resources/fonts/BerkshireSwash-Regular.woff') format('woff');
+}
 
 html, #root {
   height: 100%;
