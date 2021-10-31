@@ -48,7 +48,7 @@ function ChatBubble({ chat, keyStr }: ChatBubbleProps) {
               fontWeight="600"
               textAlign={chat.fromSelf ? "right" : "left"}
               fontFamily="Print Clearly"
-              fontSize="1em">{time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Text>
+              fontSize="1em">{time.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}</Text>
             <Box
               key={keyStr}
               rounded="md"
