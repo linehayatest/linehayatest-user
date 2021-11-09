@@ -75,19 +75,19 @@ function useContent() {
         <Text fontFamily="Berkshire Swash" fontWeight="400">Terms of Use</Text>
         <Box textAlign="left" px="8">
           <Text fontSize="18px" mb="4">
-            By using LineHayat Support Services, you agree to the Terms and Conditions stated below. LineHayat is a Listening Service delivered by a team of well-trained Listening Volunteers and is provided for USM students only.
+            By using LineHayat Support Services, you agree to the Terms and Conditions stated below. LineHayat is a Listening Service delivered by a team of well-trained Listening Volunteers and it is provided for USM students only.
           </Text>
           <OrderedList fontSize="16px" mb="8">
-            <ListItem>We provide immediate and accessible emotional support to USM students.</ListItem>
-            <ListItem>We listen with an empathic, collaborative, and non-judgemental stance.</ListItem>
+            <ListItem>We provide immediate and accessible emotional support to students.</ListItem>
+            <ListItem>We listen with an empathic, collaborative, and non-judgmental stance.</ListItem>
             <ListItem>We provide a safe space for you to talk or share feelings and thoughts.</ListItem>
             <ListItem>We do not provide professional counselling, medical advice, or treatment of any conditions.</ListItem>
-            <ListItem>We will not be treated as an emergency service or subsitute or alternative to professional health care.</ListItem>
+            <ListItem>We are not and will not be treated as an emergency service or substitute or alternative to professional health care.</ListItem>
             <ListItem>We have taken three significant steps to ensure a high level of security:</ListItem>
             <OrderedList fontSize="16px" listStyleType="upper-roman">
               <ListItem>Both you and the Listening Volunteer will remain anonymous.</ListItem>
               <ListItem>We will never track your IP address.</ListItem>
-              <ListItem>We will never save session transcripts. All chats will be automatically deleted as the conversation ends.</ListItem>
+              <ListItem>We will never save session transcripts. All chats will be automatically deleted when the conversation ends.</ListItem>
             </OrderedList>
           </OrderedList>
           <HStack justifyContent="flex-end">
@@ -124,19 +124,19 @@ function useContent() {
         <Text fontFamily="Berkshire Swash" fontWeight="400" fontSize="28px">Waiting Room</Text>
 
         <VStack fontSize="18px" w="100%" px="4" justifyContent="center">
-          <Text>Hi Friend, I am your listener today.</Text>
-          <Text>You are now in the queue. I will reach out to you soon.</Text>
+          <Text>Hi Friend,</Text>
+          <Text>you are in the queue.</Text>
 
-          <Text>Thank you for your patience.</Text>
+          <Text>I will reach out to you soon. Thank you for your patience.</Text>
 
-          <Text>While waiting to get in, there are few things that I would like to tell you:</Text>
+          <Text>While waiting, I would like to tell you:</Text>
           <UnorderedList w={["auto", "480px"]} textAlign="left">
             <ListItem>Feel free to share your feelings and thoughts.</ListItem>
             <ListItem>Talk at your own pace and willingness.</ListItem>
             <ListItem>It’s okay to stay silent if you want to gather your thoughts.</ListItem>
           </UnorderedList>
 
-          <Text mb="8">I appreciate you being here.</Text>
+          <Text mb="8">I appreciate you being here today.</Text>
 
           <Text
             fontSize="18px"
