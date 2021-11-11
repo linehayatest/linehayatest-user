@@ -18,10 +18,11 @@ function Feedback() {
         px={["4", "100px"]}
         bgColor="#CFDED7"
         fontFamily="Print Clearly"
-        fontSize="1.5em"
+        fontSize="1.5rem"
         fontWeight="600"
         rounded="2xl" boxShadow="md"
         justifyContent="center" alignItems="center"
+        color="#5B4C43"
       >
         <Text fontFamily="Berkshire Swash" fontSize="1.25em">Feedback for LineHayat Live Chat</Text>
         <Text>Kindly rate this chat session</Text>
@@ -35,9 +36,9 @@ function Feedback() {
           <Textarea
             rounded="2xl"
             variant="filled"
-            fontWeight="500"
             rows={6}
             placeholder="Type your message here..."
+            fontSize="1em"
           ></Textarea>
         </Box>
         <Button
@@ -47,6 +48,9 @@ function Feedback() {
           }}
           rounded="full"
           boxShadow="md"
+          bgColor="#FFFAE7"
+          size="lg"
+          fontSize="0.8em"
         >
           Submit
         </Button>
