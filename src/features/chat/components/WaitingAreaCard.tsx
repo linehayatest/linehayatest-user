@@ -55,7 +55,7 @@ function useContent() {
             <Text width="80%">Proceed to have a one-on-one chat with our Listening Volunteer.</Text>
           </VStack>
         </HStack>
-        <Text fontSize={["1rem", "1.5rem"]} color="#5B4C43">Note: Every chat is appointed at an approximate 20 minutes</Text>
+        <Text fontSize={["1rem", "1.5rem"]} color="#5B4C43">Note: Every chat is appointed at an approximate time of 20 minutes.</Text>
       </VStack>
     ),
     // Card 3
@@ -115,7 +115,7 @@ function useContent() {
 
         <VStack fontSize="1.25rem" w="100%" px="4" justifyContent="center" color="#5B4C43">
           <Text>Hi Friend,</Text>
-          <Text>you are in the queue.</Text>
+          <Text>you are in the queue. \(^V^)/</Text>
 
           <Text>I will reach out to you soon. Thank you for your patience.</Text>
 
