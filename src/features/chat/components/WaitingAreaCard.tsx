@@ -22,7 +22,7 @@ function useContent() {
     // Card 2
     (
       <VStack h="full" w="full" px="2" justifyContent="center" fontFamily="Print Clearly" fontSize="1.25em" fontWeight="600" textAlign="center">
-        <Text mt={["2", "8"]} fontFamily="Berkshire Swash" fontWeight="400" fontSize={["1rem", "1.5rem"]} color="#5B4C43">How does LineHayat's anonymous chat support service work?</Text>
+        <Text mt={["2", "8"]} fontFamily="Berkshire Swash" fontWeight="400" fontSize={["1em", "1.25em"]} color="#5B4C43">How does LineHayat's anonymous chat support service work?</Text>
         <HStack
           display="flex"
           flexDirection={["column", "row"]}
@@ -55,25 +55,25 @@ function useContent() {
             <Text width="80%">Proceed to have a one-on-one chat with our Listening Volunteer.</Text>
           </VStack>
         </HStack>
-        <Text fontSize={["1rem", "1.5rem"]} color="#5B4C43">Note: Every chat is appointed at an approximate time of 20 minutes.</Text>
+        <Text fontSize={["1em", "1.25em"]} color="#5B4C43">Note: Every chat is appointed at an approximate time of 20 minutes.</Text>
       </VStack>
     ),
     // Card 3
     (
-      <VStack h="full" w="full" px="2" pt="4" justifyContent="center" fontFamily="Print Clearly" fontWeight="600" textAlign="center" overflow="auto">
-        <Text fontFamily="Berkshire Swash" fontWeight="400" color="#5B4C43" fontSize={["1.25em", "1.875em"]}>Terms of Use</Text>
+      <VStack h="full" w="full" px="2" pt="4" justifyContent="center" fontFamily="Print Clearly" fontSize="1.25em" fontWeight="600" textAlign="center" overflow="auto">
+        <Text fontFamily="Berkshire Swash" fontWeight="400" color="#5B4C43" fontSize={["1em", "1.25em"]}>Terms of Use</Text>
         <Box textAlign="left" px={["2", "8"]}>
-          <Text fontSize="1em" mb="4" color="#5B4C43">
+          <Text mb="4" color="#5B4C43">
             By using LineHayat Support Services, you agree to the Terms and Conditions stated below. LineHayat is a Listening Service delivered by a team of well-trained Listening Volunteers and it is provided for USM students only.
           </Text>
-          <OrderedList fontSize="1em" mb="8" color="#5B4C43">
+          <OrderedList mb="8" color="#5B4C43">
             <ListItem>We provide immediate and accessible emotional support to students.</ListItem>
             <ListItem>We listen with an empathic, collaborative, and non-judgmental stance.</ListItem>
             <ListItem>We provide a safe space for you to talk or share feelings and thoughts.</ListItem>
             <ListItem>We do not provide professional counselling, medical advice, or treatment of any conditions.</ListItem>
             <ListItem>We are not and will not be treated as an emergency service or substitute or alternative to professional health care.</ListItem>
             <ListItem>We have taken three significant steps to ensure a high level of security:</ListItem>
-            <OrderedList fontSize="1em" listStyleType="upper-roman">
+            <OrderedList listStyleType="upper-roman">
               <ListItem>Both you and the Listening Volunteer will remain anonymous.</ListItem>
               <ListItem>We will never track your IP address.</ListItem>
               <ListItem>We will never save session transcripts. All chats will be automatically deleted when the conversation ends.</ListItem>
@@ -100,7 +100,7 @@ function useContent() {
         justifyContent="center"
         h="full" w="full"
         px="2"
-        fontSize={["1rem", "1.5rem"]} fontFamily="Print Clearly" fontWeight="600" textAlign="center"
+        fontSize="1.25em" fontFamily="Print Clearly" fontWeight="600" textAlign="center"
         overflow="auto"
       >
         <Box h="140px" overflowY="hidden" marginTop={["0", "-48px"]}>
@@ -111,9 +111,9 @@ function useContent() {
             objectFit="scale-down"
           />
         </Box>
-        <Text fontFamily="Berkshire Swash" fontWeight="400" fontSize="1.25em" color="#5B4C43">Waiting Room</Text>
+        <Text fontFamily="Berkshire Swash" fontWeight="400" fontSize={["1em", "1.25em"]} color="#5B4C43">Waiting Room</Text>
 
-        <VStack fontSize="1.25rem" w="100%" px="4" justifyContent="center" color="#5B4C43">
+        <VStack w="100%" px="4" justifyContent="center" color="#5B4C43">
           <Text>Hi Friend,</Text>
           <Text>you are in the queue. \(^V^)/</Text>
 
