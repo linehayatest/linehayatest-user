@@ -12,19 +12,19 @@ function Feedback() {
   const resetUser = useResetUser()
 
   return (
-    <VStack w="full" h="full" alignItems="center" justifyContent="center">
+    <VStack w="95%" h="full" alignItems="center" justifyContent="center" margin="auto">
       <VStack
         h={["90%"]} w={["100%", "70%"]}
         px={["4", "100px"]}
         bgColor="#CFDED7"
         fontFamily="Print Clearly"
-        fontSize="1.5rem"
+        fontSize={["1.25rem", "1.5rem"]}
         fontWeight="600"
         rounded="2xl" boxShadow="md"
         justifyContent="center" alignItems="center"
         color="#5B4C43"
       >
-        <Text fontFamily="Berkshire Swash" fontSize="1.25em">Feedback for LineHayat Live Chat</Text>
+        <Text fontFamily="Berkshire Swash">Feedback for LineHayat Live Chat</Text>
         <Text>Kindly rate this chat session</Text>
 
         <Rating

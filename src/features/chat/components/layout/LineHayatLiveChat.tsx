@@ -1,7 +1,7 @@
 import React from 'react'
 import { HStack, Image, Text } from '@chakra-ui/react'
 
-import chatBubbles from '@resources/images/ChatBubbles.svg'
+import chatBubbles from '@resources/images/chat-bubbles.svg'
 
 function LineHayatLiveChat() {
   return (

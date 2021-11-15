@@ -1,25 +1,10 @@
 import React, { useState, useEffect, MouseEvent } from 'react'
-import { GridItem, VStack, HStack, Box, Button, Text, Checkbox, UnorderedList, OrderedList, ListItem, Image } from '@chakra-ui/react'
+import { VStack, HStack, Box, Button, Text, Checkbox, UnorderedList, OrderedList, ListItem, Image } from '@chakra-ui/react'
 
 import phoneCallGif from "@resources/images/LH-Phone-Call-Compressed.gif"
-import testImage from "@resources/images/123testimage.png"
-
-type CardGraphicsProps = {
-  [x: string]: any
-}
-function CardGraphics(props: CardGraphicsProps) {
-  return (
-    <Box
-      {...props}
-      w={["120px", "200px"]}
-      h={["120px", "200px"]}
-      borderRadius="50%"
-      bgColor="gray.300"
-    >
-
-    </Box>
-  )
-}
+import howItWorks1 from "@resources/images/how-it-works-1.svg"
+import howItWorks2 from "@resources/images/how-it-works-2.svg"
+import howItWorks3 from "@resources/images/how-it-works-3.svg"
 
 function useContent() {
   const [cardNum, setCardNum] = useState(0)
@@ -29,54 +14,55 @@ function useContent() {
   const cards = [
     // Card 1
     (
-      <VStack h="full" w="full" px="2" justifyContent="center" fontSize="2rem" fontFamily="Print Clearly" fontWeight="600" color="#5B4C43">
+      <VStack h="full" w="full" px="2" justifyContent="center" fontSize={["1.5rem", "2rem"]} fontFamily="Print Clearly" fontWeight="600" color="#5B4C43">
         <Text textAlign="center" mb="4">Hi, how are you today?</Text>
         <Text textAlign="center">Would you like to talk to someone?</Text>
       </VStack>
     ),
     // Card 2
     (
-      <VStack h="full" w="full" px="2" justifyContent="center" fontSize="24px" fontFamily="Print Clearly" fontWeight="600" textAlign="center">
-        <Text mb="4" mt="2" fontFamily="Berkshire Swash" fontWeight="400" fontSize="1.5rem" color="#5B4C43">How does LineHayat's anonymous chat support service work?</Text>
+      <VStack h="full" w="full" px="2" justifyContent="center" fontFamily="Print Clearly" fontSize="1.25em" fontWeight="600" textAlign="center">
+        <Text mt={["2", "8"]} fontFamily="Berkshire Swash" fontWeight="400" fontSize={["1rem", "1.5rem"]} color="#5B4C43">How does LineHayat's anonymous chat support service work?</Text>
         <HStack
-          display={["none", "flex"]}
+          display="flex"
+          flexDirection={["column", "row"]}
           justifyContent="center"
-          spacing={8}
-          mb="16"
+          color="#846859"
+          h="full"
         >
-          <CardGraphics />
-          <CardGraphics />
-          <CardGraphics />
+          <VStack h="full" w="full">
+            <Image
+              boxSize={["9rem", "15rem"]}
+              src={howItWorks1}
+              alt="Read the terms and conditions"
+            />
+            <Text width="80%">Read the terms and conditions, before clicking ‘Next’.</Text>
+          </VStack>
+          <VStack h="full" w="full">
+            <Image
+              boxSize={["9rem", "15rem"]}
+              src={howItWorks2}
+              alt="Wait for our Listening Volunteer to reach you"
+            />
+            <Text width="80%">Please wait patiently for our Listening Volunteer to reach you.</Text>
+          </VStack>
+          <VStack h="full" w="full">
+            <Image
+              boxSize={["9rem", "15rem"]}
+              src={howItWorks3}
+              alt="Chat with our Listening Volunteer"
+            />
+            <Text width="80%">Proceed to have a one-on-one chat with our Listening Volunteer.</Text>
+          </VStack>
         </HStack>
-        <VStack
-          display={["flex", "none"]}
-          flexDirection="column"
-          mb="4"
-        >
-          <Image
-            boxSize="6rem"
-            src={testImage}
-            alt="Test image"
-          />
-          <Image
-            boxSize="6rem"
-            src={testImage}
-            alt="Test image"
-          />
-          <Image
-            boxSize="6rem"
-            src={testImage}
-            alt="Test image"
-          />
-        </VStack>
         <Text fontSize={["1rem", "1.5rem"]} color="#5B4C43">Note: Every chat is appointed at an approximate 20 minutes</Text>
       </VStack>
     ),
     // Card 3
     (
-      <VStack h="full" w="full" px="2" pt="4" justifyContent="center" fontSize="1.25rem" fontFamily="Print Clearly" fontWeight="600" textAlign="center" overflow="auto">
-        <Text fontFamily="Berkshire Swash" fontWeight="400" color="#5B4C43" fontSize="1.25em">Terms of Use</Text>
-        <Box textAlign="left" px="8">
+      <VStack h="full" w="full" px="2" pt="4" justifyContent="center" fontFamily="Print Clearly" fontWeight="600" textAlign="center" overflow="auto">
+        <Text fontFamily="Berkshire Swash" fontWeight="400" color="#5B4C43" fontSize={["1.25em", "1.875em"]}>Terms of Use</Text>
+        <Box textAlign="left" px={["2", "8"]}>
           <Text fontSize="1em" mb="4" color="#5B4C43">
             By using LineHayat Support Services, you agree to the Terms and Conditions stated below. LineHayat is a Listening Service delivered by a team of well-trained Listening Volunteers and it is provided for USM students only.
           </Text>
@@ -114,7 +100,7 @@ function useContent() {
         justifyContent="center"
         h="full" w="full"
         px="2"
-        fontSize="1.25rem" fontFamily="Print Clearly" fontWeight="600" textAlign="center"
+        fontSize={["1rem", "1.5rem"]} fontFamily="Print Clearly" fontWeight="600" textAlign="center"
         overflow="auto"
       >
         <Box h="140px" overflowY="hidden" marginTop={["0", "-48px"]}>
@@ -125,16 +111,16 @@ function useContent() {
             objectFit="scale-down"
           />
         </Box>
-        <Text fontFamily="Berkshire Swash" fontWeight="400" fontSize="28px" color="#5B4C43">Waiting Room</Text>
+        <Text fontFamily="Berkshire Swash" fontWeight="400" fontSize="1.25em" color="#5B4C43">Waiting Room</Text>
 
-        <VStack fontSize="1em" w="100%" px="4" justifyContent="center" color="#5B4C43">
+        <VStack fontSize="1.25rem" w="100%" px="4" justifyContent="center" color="#5B4C43">
           <Text>Hi Friend,</Text>
           <Text>you are in the queue.</Text>
 
           <Text>I will reach out to you soon. Thank you for your patience.</Text>
 
           <Text>While waiting, I would like to tell you:</Text>
-          <UnorderedList w={["auto", "480px"]} textAlign="left">
+          <UnorderedList w={["auto", "480px"]} px="4" textAlign="left">
             <ListItem>Feel free to share your feelings and thoughts.</ListItem>
             <ListItem>Talk at your own pace and willingness.</ListItem>
             <ListItem>It’s okay to stay silent if you want to gather your thoughts.</ListItem>
@@ -203,19 +189,20 @@ function WaitingAreaCard({ onLastCard }: WaitingAreaCardProps) {
       w="100%" h="100%"
       spacing={0}
     >
-      <VStack flexGrow={1} w="full" bgColor="#CFDED7" rounded="xl" borderBottomRadius="0">
-        <Box h="full" w="full">
+      <VStack flexGrow={1} w={["90%", "100%"]} bgColor="#CFDED7" rounded="xl" borderBottomRadius="0">
+        <Box h="full" w="95%">
           {card}
         </Box>
       </VStack>
       <HStack
-        display={cardNum === 3 ? "none" : "flex"}
-        w="100%" py="4" px={["4", "8"]}
+        display="flex"
+        w={["90%", "100%"]} py="4" px={["4", "8"]}
         flexBasis="40px"
         justifyContent="space-between"
         bgColor="#CFDED7"
         rounded="xl"
         borderTopRadius="0"
+        mb="4"
       >
         {canPrev ? (
           <WaitingAreaButton text="Previous" bgColor="#F3F3F3" onClick={prevCard} />

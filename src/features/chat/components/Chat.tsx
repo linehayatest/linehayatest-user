@@ -163,15 +163,15 @@ function ChatArea() {
   }, [text, inputRef, sendChat])
 
   return (
-    <Box w="100%" h={["500px", "550px"]} bgColor="#CFDED7" rounded="xl" boxShadow="xl">
-      <HStack justifyContent="space-between" px="4" py="2" borderBottom="2px solid white">
+    <Box display="flex" flexDirection="column" w="100%" h={["100%", "550px"]} bgColor="#CFDED7" rounded="xl" boxShadow="xl">
+      <HStack justifyContent="space-between" px="4" py="2" borderBottom="1px solid white">
         <HStack>
           <Box w="20px" h="20px" bgColor="#49CA85" borderRadius="50%"></Box>
           <Text fontSize="1.5em" fontFamily="Print Clearly" fontWeight="600">Listening Volunteer</Text>
         </HStack>
         <EndConversationButton />
       </HStack>
-      <VStack overflow="auto" h={["400px", "450px"]} ref={chatListRef} px="2" spacing={1}>
+      <VStack flexGrow={1} overflowY="scroll" h={["", "450px"]} maxHeight="" ref={chatListRef} px="2" spacing={1}>
         {
           chats.map((chat, i) => (
             <ChatBubble chat={chat} keyStr={JSON.stringify(i)} />
