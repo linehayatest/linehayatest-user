@@ -9,8 +9,8 @@ function Layout({ children }: LayoutProps) {
   return (
     <Grid
       templateRows="3rem 1fr"
-      height="100vh"
-      width="100vw"
+      minHeight="100vh"
+      minWidth="100vw"
     >
       {children}
     </Grid>

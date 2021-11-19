@@ -14,7 +14,7 @@ function Feedback() {
   return (
     <VStack w="95%" h="full" alignItems="center" justifyContent="center" margin="auto">
       <VStack
-        h={["90%"]} w={["100%", "70%"]}
+        h={["90%"]} w="100%" maxWidth="50rem"
         px={["4", "100px"]}
         bgColor="#CFDED7"
         fontFamily="Print Clearly"

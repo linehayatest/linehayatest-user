@@ -38,8 +38,8 @@ function NavbarLayoutContainer({ children }: NavbarLayoutContainerProps) {
               </Box>
             )
           }
-          <Box flexGrow={1} w="100%" h="calc(100% - 11rem)">
-            <Box mx="auto" h={["100%", "96%"]} w={["100%", "70%"]}>
+          <Box flexGrow={1} w="100%">
+            <Box mx="auto" h="100%" w={["100%", "70%"]}>
               {children}
             </Box>
           </Box>

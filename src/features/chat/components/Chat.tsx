@@ -158,7 +158,7 @@ function ChatArea() {
         </HStack>
         <EndConversationButton />
       </HStack>
-      <VStack flexGrow={1} overflowY="auto" h={["", "450px"]} maxHeight="" ref={chatListRef} px="2" spacing={1}>
+      <VStack flexGrow={1} overflowY="auto" maxHeight="calc(100vh - 11.5rem - 101px)" ref={chatListRef} px="2" spacing={1}>
         {
           chats.map((chat, i) => (
             <ChatBubble chat={chat} keyStr={JSON.stringify(i)} />
